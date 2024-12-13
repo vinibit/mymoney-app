@@ -56,4 +56,6 @@ coverage/
 
 # React specific
 build/
+
+package-lock.json
 ```
