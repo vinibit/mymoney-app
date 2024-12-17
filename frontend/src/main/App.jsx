@@ -3,13 +3,14 @@ import React from 'react'
 import Header from '../common/template/header'
 import Sidebar from '../common/template/Sidebar'
 import Footer from '../common/template/Footer'
+import Routes from './Routes'
 
 const App = props => (
     <div className='wrapper'>
         <Header />
         <Sidebar />
         <div className="content-wrapper">
-            <h1>Conteúdo</h1>
+            <Routes />
         </div>
         <Footer />
     </div>
