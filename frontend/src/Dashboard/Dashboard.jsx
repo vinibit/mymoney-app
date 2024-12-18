@@ -1,4 +1,8 @@
 import React, { Component } from "react"
+import { connect } from "react-redux"
+import { bindActionCreators } from "redux"
+
+import { getSummary } from "./DashboardActions"
 
 import ContentHeader from "../Common/Template/ContentHeader"
 import Content from "../Common/Template/Content"
@@ -10,19 +14,26 @@ class Dashboard extends Component {
     constructor(props) {
         super(props)
     }
+    
+    componentDidMount() {
+        this.props.getSummary()
+    }
 
     render() {
+
+        const { credit, debt } = this.props.summary
+
         return (
             <div>            
                 <ContentHeader title="Dashboard" descricao="Versão 1.0" />   
                 <Content>
                     <Row>
-                        <ColorPanel icon="bank" value="R$ 10" 
-                            color="green" sizes="12 4" text="Total de Créditos" />
-                        <ColorPanel icon="credit-card" value="R$ 10" 
-                            color="red" sizes="12 4" text="Total de Débitos" />
-                        <ColorPanel icon="money" value="R$ 0" 
-                            color="blue" sizes="12 4" text="Valor Consolidado" />
+                        <ColorPanel icon="bank"  color="green" sizes="12 4" 
+                            text="Total de Créditos" value={credit} />
+                        <ColorPanel icon="credit-card" color="red" sizes="12 4" 
+                            text="Total de Débitos" value={debt} />
+                        <ColorPanel icon="money" color="blue" sizes="12 4" 
+                            text="Valor Consolidado" value={credit - debt} />
                     </Row>
                 </Content>                            
             </div>            
@@ -30,4 +41,12 @@ class Dashboard extends Component {
     }
 }
 
-export default Dashboard
+const mapStateToProps = state => ({
+    summary: state.dashboard.summary
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({ getSummary }, dispatch)
+
+export default connect(
+    mapStateToProps, 
+    mapDispatchToProps)(Dashboard)
