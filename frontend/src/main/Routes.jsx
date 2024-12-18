@@ -1,17 +1,17 @@
 import React from "react"
-import { Router, Route, Redirect, hashHistory } from "react-router"
-import { createBrowserHistory } from "history"
+import { Router, Route, Redirect, hashHistory, IndexRoute } from "react-router"
 
-import BillingCycle from "../BillingCycle/BillingCycle"
+import App from "./App"
 import Dashboard from "../Dashboard/Dashboard"
+//import Dashboard from "../InnerStateDashboard/InnerStateDashboard"
+import BillingCycle from "../BillingCycle/BillingCycle"
 
-const history = createBrowserHistory()
-
-const Routes = _ => (
-    <Router history={history}>
-        <Route path="/" component={Dashboard} />
-        <Route path="/billingCycle" component={BillingCycle} />
-        <Redirect from="/" to="/dashboard" />
+const Routes = props => (
+    <Router history={hashHistory}>
+        <Route path="/" component={App} >
+            <IndexRoute component={Dashboard} />    
+            <Route path="/billingCycle" component={BillingCycle} />        
+        </Route>
         <Redirect from="*" to="/" />
     </Router>
 )
