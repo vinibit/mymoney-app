@@ -2,8 +2,8 @@ import React from "react"
 import { Router, Route, Redirect, hashHistory, IndexRoute } from "react-router"
 
 import App from "./App"
-import Dashboard from "../Dashboard/Dashboard"
-//import Dashboard from "../InnerStateDashboard/InnerStateDashboard"
+//import Dashboard from "../Dashboard/Dashboard"
+import Dashboard from "../StatefulDashboard/StatefulDashboard"
 import BillingCycle from "../BillingCycle/BillingCycle"
 
 const Routes = props => (
