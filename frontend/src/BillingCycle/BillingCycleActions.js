@@ -10,3 +10,5 @@ function getList() {
         payload: request
     }   
 }
+
+export { getList }
