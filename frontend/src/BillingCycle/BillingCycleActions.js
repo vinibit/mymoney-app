@@ -38,10 +38,22 @@ function update(values) {
     return submit(values, 'put')
 }
 
+function remove(values) {
+    return submit(values, 'delete')
+}
+
 function showUpdate(billingCycle) {
     return [
         showTabs('tabUpdate'),
         selectTab('tabUpdate'),
+        initialize('billingCycleForm', billingCycle)
+    ]
+}
+
+function showDelete(billingCycle) {
+    return [
+        showTabs('tabDelete'),
+        selectTab('tabDelete'),
         initialize('billingCycleForm', billingCycle)
     ]
 }
@@ -55,4 +67,4 @@ function init() {
     ]
 }
 
-export { getList, create, update, showUpdate, init }
+export { getList, create, update, remove, showUpdate, showDelete, init }

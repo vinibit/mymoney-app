@@ -14,7 +14,7 @@ import List from './BillingCycleList'
 import Form from './BillingCycleForm'
 
 import { selectTab, showTabs }  from "../Common/Tabs/TabsActions"
-import { create, update } from "./BillingCycleActions"
+import { create, update, remove } from "./BillingCycleActions"
 
 class BillingCycle extends Component {
     
@@ -26,7 +26,7 @@ class BillingCycle extends Component {
 
     render() {
 
-        const { create, update } = this.props
+        const { create, update, remove } = this.props
 
         return (
             <div>
@@ -44,13 +44,20 @@ class BillingCycle extends Component {
                                 <List />
                             </TabsBodyContent>
                             <TabsBodyContent id="tabCreate">
-                                <Form onSubmit={create} />
+                                <Form onSubmit={create} 
+                                    submitClass="primary" 
+                                    submitLabel="Incluir" />
                             </TabsBodyContent>
                             <TabsBodyContent id="tabUpdate">
-                                <Form onSubmit={update} />
+                                <Form onSubmit={update} 
+                                    submitClass="info"
+                                    submitLabel="Atualizar" />
                             </TabsBodyContent>
                             <TabsBodyContent id="tabDelete">
-                                                                
+                                 <Form onSubmit={remove} 
+                                    readOnly={true} 
+                                    submitClass="danger" 
+                                    submitLabel="Excluir" />                               
                             </TabsBodyContent>
                         </TabsBody>
                     </Tabs>
@@ -62,7 +69,7 @@ class BillingCycle extends Component {
 
 const mapStateToProps = state => ({ })
 const mapDispatchToProps = dispatch => bindActionCreators({ 
-    selectTab, showTabs, create, update 
+    selectTab, showTabs, create, update, remove 
 }, dispatch)
 
 export default connect(mapDispatchToProps, mapDispatchToProps)(BillingCycle)
