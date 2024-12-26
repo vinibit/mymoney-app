@@ -38,4 +38,11 @@ function create(values) {
     }       
 }
 
-export { getList, create }
+function showUpdate(billingCycle) {
+    return [
+        showTabs('tabUpdate'),
+        selectTab('tabUpdate')
+    ]
+}
+
+export { getList, create, showUpdate }

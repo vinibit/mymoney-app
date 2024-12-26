@@ -19,8 +19,9 @@ import { create } from "./BillingCycleActions"
 class BillingCycle extends Component {
     
     componentDidMount() {
-        this.props.selectTab('tabList')
-        this.props.showTabs('tabList', 'tabCreate')
+        const { selectTab, showTabs } = this.props
+        selectTab('tabList')
+        showTabs('tabList', 'tabCreate')
     }
 
     render() {
@@ -46,7 +47,7 @@ class BillingCycle extends Component {
                                 <Form onSubmit={create} />
                             </TabsBodyContent>
                             <TabsBodyContent id="tabUpdate">
-                                <h1>Altera</h1>
+                                <Form />
                             </TabsBodyContent>
                             <TabsBodyContent id="tabDelete">
                                 <h1>Exclui</h1>
