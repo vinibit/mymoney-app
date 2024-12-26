@@ -16,12 +16,10 @@ function getList() {
     }   
 }
 
-function create(values) {
-
-    console.log('values', values)
-
+function submit(values, method) {
     return dispatch => {
-        axios.post(`${BASE_URL}/billingCycle`, values)
+        const id = values._id || ''
+        axios[method](`${BASE_URL}/billingCycle/${id}`, values)
             .then(res => {
                 toastr.success('Sucesso', 'Operação realizada com sucesso.')
                 dispatch(init())
@@ -30,6 +28,14 @@ function create(values) {
                 err.response.data.errors.forEach(error => toastr.error('Erro', error))
             })        
     }       
+}
+
+function create(values) {    
+    return submit(values, 'post')    
+}
+
+function update(values) {
+    return submit(values, 'put')
 }
 
 function showUpdate(billingCycle) {
@@ -49,4 +55,4 @@ function init() {
     ]
 }
 
-export { getList, create, showUpdate, init }
+export { getList, create, update, showUpdate, init }
