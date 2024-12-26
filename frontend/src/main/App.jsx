@@ -3,7 +3,8 @@ import React from 'react'
 import Header from '../common/template/header'
 import Sidebar from '../common/template/Sidebar'
 import Footer from '../common/template/Footer'
-import Routes from './Routes'
+import Messages from '../Common/Messages/Messages'
+
 
 const App = props => (
     <div className='wrapper'>
@@ -13,6 +14,7 @@ const App = props => (
             {props.children}
         </div>
         <Footer />
+        <Messages />
     </div>
 )
 

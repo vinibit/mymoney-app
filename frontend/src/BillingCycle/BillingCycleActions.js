@@ -1,5 +1,10 @@
-import { BILLING_CYCLE_FETCHED } from './BillingCycleActionsTypes'
+import { BILLING_CYCLE_FETCHED, BIILLING_CYCLE_CREATED } from './BillingCycleActionsTypes'
+
 import axios from 'axios'
+import { toastr } from 'react-redux-toastr'
+import { reset as resetForm } from 'redux-form'
+
+import { selectTab, showTabs } from '../Common/Tabs/TabsActions'
 
 const BASE_URL = 'http://localhost:3003/api'
 
@@ -11,4 +16,26 @@ function getList() {
     }   
 }
 
-export { getList }
+function create(values) {
+
+    console.log('values', values)
+
+    return dispatch => {
+        axios.post(`${BASE_URL}/billingCycle`, values)
+            .then(res => {
+                toastr.success('Sucesso', 'Operação realizada com sucesso.')
+                dispatch([
+                    resetForm('billingCycleForm'), 
+                    getList(),
+                    selectTab('tabList'),
+                    showTabs('tabList', 'tabCreate')                     
+                ])
+            })
+            .catch(err => {
+                err.response.data.errors.forEach(error => toastr.error('Erro', error))
+            })
+       
+    }       
+}
+
+export { getList, create }
