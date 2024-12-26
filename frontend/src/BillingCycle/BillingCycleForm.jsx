@@ -10,20 +10,31 @@ class BillingCycleForm extends Component {
 
     render() {
 
-        const { handleSubmit, init } = this.props        
+        const { handleSubmit, init, readOnly, submitClass, submitLabel } = this.props        
         
         return (
             <form role="form" onSubmit={handleSubmit}>
                 <div className="box-body">                    
                     <Field name="name" component={Input} 
-                        label="Nome" sizes="12 4" placeholder="Informe o nome" />
+                        label="Nome" 
+                        sizes="12 4" 
+                        placeholder="Informe o nome" 
+                        readOnly={readOnly} />
                     <Field name="month" component={Input} 
-                        label="Mês" sizes="12 4" placeholder="Informe o mês" />
+                        label="Mês" 
+                        sizes="12 4" 
+                        placeholder="Informe o mês" 
+                        readOnly={readOnly} />
                     <Field name="year" component={Input} 
-                        label="Ano" sizes="12 4" placeholder="Informe o ano" />
+                        label="Ano" 
+                        sizes="12 4" 
+                        placeholder="Informe o ano" 
+                        readOnly={readOnly} />
                 </div>
                 <div className="box-footer">
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className={`btn btn-${submitClass}`}>
+                        {submitLabel}
+                    </button>
                     <button type="button" className="btn btn-default"
                         onClick={init}>Cancel</button>
                 </div>
@@ -32,7 +43,6 @@ class BillingCycleForm extends Component {
     }
 }
 
-//BillingCycleForm = reduxForm({ form: 'billingCycleForm', destroyOnUnmount: false })(BillingCycleForm)
 const mapDispatchToProps = dispatch => bindActionCreators({ init }, dispatch)
 export default connect(null, mapDispatchToProps)(
     reduxForm({ form: 'billingCycleForm', destroyOnUnmount: false })(
