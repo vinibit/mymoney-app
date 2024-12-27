@@ -1,17 +1,11 @@
-import React from "react"
-import Grid from "../Layout/Grid"
+import React from 'react'
 
-const Input = ({ input, type, sizes, name, label, placeholder, readOnly }) => (
-    <Grid sizes={sizes}>
-        <div className="form-group">
-            <label htmlFor={name}>{label}</label>
-            <input { ...input } 
-                type={type}
-                className="form-control" 
-                placeholder={placeholder} 
-                readOnly={readOnly} />
-        </div>
-    </Grid>
+const Input = ({ input, type, placeholder, readOnly }) => (
+    <input { ...input } 
+        type={type}
+        className="form-control" 
+        placeholder={placeholder} 
+        readOnly={readOnly} />
 )
 
 export default Input
