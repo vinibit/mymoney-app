@@ -10,13 +10,13 @@ import multi from 'redux-multi'
 import thunk from 'redux-thunk'
 
 import Reducers from './Main/Reducers'
-import Routes from './Main/Routes'
+import AuthFilter from './Main/AuthFilter'
 
 const DevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 const store = applyMiddleware(promise, multi, thunk)(createStore)(Reducers, DevTools)
 
 ReactDOM.render(
     <ReduxProvider store={store}>
-        <Routes />
+        <AuthFilter />
     </ReduxProvider>
 , document.getElementById('app'))
