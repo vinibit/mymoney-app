@@ -22,6 +22,6 @@ module.exports = function(server) {
 
     const AuthService = require('../api/user/authService')
     publicApiRouter.post('/login', AuthService.login)
-    publicApiRouter.post('/signup', AuthService.sigup)
+    publicApiRouter.post('/signup', AuthService.signup)
     publicApiRouter.post('/validateToken', AuthService.verifyToken)
 }

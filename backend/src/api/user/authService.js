@@ -2,6 +2,7 @@ const _ = require('lodash')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
+const env = require('../../.env')
 const User = require('./user') // Assuming you have a User model
 
 const EMAIL_REGEX = /\S+@\S+\.\S+/
@@ -26,16 +27,15 @@ const authService = {
                 return sendErrorsFromDB(res, err)
             
             if (!user || !bcrypt.compareSync(password, user.password)) 
-                return res.status(401).send({ errors: ['Usuário/Senha inválidos'] })
+                return res.status(400).send({ errors: ['Usuário/Senha inválidos'] })
                 
             const token = jwt.sign(user, env.authSecret, {
                 expiresIn: EXPIRATION_TIME
             })
+
             const { name, email } = user
             res.json({ name, email, token })            
-        })
-
-        return next()
+        })        
     },
 
     verifyToken: (req, res, next) => {
@@ -49,7 +49,7 @@ const authService = {
         })        
     },
 
-    sigup: (req, res, next) => {
+    signup: (req, res, next) => {
         
         const { name, email, password, confirmPassword } = req.body
         
