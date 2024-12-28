@@ -29,7 +29,7 @@ const authService = {
             if (!user || !bcrypt.compareSync(password, user.password)) 
                 return res.status(400).send({ errors: ['Usuário/Senha inválidos'] })
                 
-            const token = jwt.sign(user, env.authSecret, {
+            const token = jwt.sign({ ...user }, env.authSecret, {
                 expiresIn: EXPIRATION_TIME
             })
 
