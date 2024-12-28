@@ -21,7 +21,7 @@ function submit(values, url) {
 }
 
 function login(values) {
-    return submit(values, `${Constants.SERVICE_API}/login`)
+    return submit(values, `${Constants.SERVICE_URL}/login`)
 }
 
 function logout() {
@@ -29,14 +29,15 @@ function logout() {
 }
 
 function signup(values) {
-    return submit(values, `${Constants.SERVICE_API}/signup`)
+    return submit(values, `${Constants.SERVICE_URL}/signup`)
 }
 
 function validateToken(token) {
     return dispatch => {
-        if (!token) return logout()
         
-        axios.post(`${Constants.SERVICE_API}/validateToken`, { token })
+        if (!token) dispatch({ type: TOKEN_VALIDATED, payload: false })
+        
+        axios.post(`${Constants.SERVICE_URL}/validateToken`, { token })
             .then(res => {
                 dispatch({ type: TOKEN_VALIDATED, payload: res.data.valid })
             })

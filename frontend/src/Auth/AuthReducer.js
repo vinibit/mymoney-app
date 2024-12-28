@@ -1,14 +1,14 @@
 import { TOKEN_VALIDATED, USER_FETCHED } from './AuthActionsTypes'
 
 const getToken = () => {
-    const user = JSON.parse(localStorage.getItem(userKey))
+    
+    const user = JSON.parse(localStorage.getItem(userKey))    
     if (user && user.token) {
-        return user.token
+        return user
     } else {
         return null
     }
 }
-
 
 const userKey = '_my_logged_user'
 const INITIAL_STATE = {
@@ -16,22 +16,21 @@ const INITIAL_STATE = {
     validToken: false
 }
 
-const authReducer = (state = INITIAL_STATE, action) => {
-
+const AuthReducer = (state = INITIAL_STATE, action) => {
+    
     switch (action.type) {
 
         case TOKEN_VALIDATED:            
-            const stateCopy = { ...state }
+            
             if (!action.payload) {
                 localStorage.removeItem(userKey)
-                stateCopy.validToken = false
-                stateCopy.user = null
+                return { ...state, validToken: false, user: null }
             } else {
-                stateCopy.validToken = true                
-            }            
-            return stateCopy
+                return { ...state, validToken: true }
+            }                        
 
         case USER_FETCHED:
+
             localStorage.setItem(userKey, JSON.stringify(action.payload))
             return { ...state, user: action.payload, validToken: true }
 
@@ -41,4 +40,4 @@ const authReducer = (state = INITIAL_STATE, action) => {
 
 }
 
-export default authReducer
+export default AuthReducer

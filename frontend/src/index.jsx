@@ -1,3 +1,5 @@
+import './Common/Template/dependencies'
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'

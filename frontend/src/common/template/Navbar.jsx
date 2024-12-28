@@ -31,9 +31,7 @@ class Navbar extends Component {
                                 <span className="hidden-xs">{user.name}</span>
                         </a>
                         <ul className="dropdown-menu">
-                            <li className="user-header">
-                                <img src="https://github.com/vinibit.png" 
-                                    alt="User Image" className="img-circle" />
+                            <li className="user-header">                                
                                 <p>{user.name}<small>{user.email}</small></p>
                             </li>
                             <li className="user-footer"> 
